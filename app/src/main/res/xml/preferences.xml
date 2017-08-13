@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/settings_general">
+        <EditTextPreference
+            android:defaultValue="@string/settings_def_name"
+            android:dialogTitle="@string/settings_dialog_name"
+            android:inputType="textCapWords"
+            android:key="key_company_name"
+            android:title="@string/settings_title_name" />
+        <EditTextPreference
+            android:dialogTitle="@string/settings_dialog_name"
+            android:inputType="textEmailAddress"
+            android:key="key_company_email"
+            android:title="@string/settings_title_email" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/settings_lock_category">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:enabled="true"
+            android:key="key_pin_enabled"
+            android:title="@string/settings_lock_switch_title" />
+        <EditTextPreference
+            android:enabled="false"
+            android:inputType="numberPassword"
+            android:key="key_pin_code"
+            android:title="@string/settings_lock_title" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

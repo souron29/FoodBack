@@ -1,0 +1,86 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/feedback_form_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/amoledText">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/amoledText"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/feedback_cust_name_view"
+                android:layout_width="@dimen/feedback_textview_width"
+                android:layout_height="wrap_content"
+                android:text="@string/feedback_cust_name"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/feedback_cust_name_edit"
+                android:layout_width="@dimen/feedback_edittext_width"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_mandatory"
+                android:inputType="textCapWords"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/feedback_cust_ph_view"
+                android:layout_width="@dimen/feedback_textview_width"
+                android:layout_height="wrap_content"
+                android:text="@string/feedback_cust_ph"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/feedback_cust_ph_edit"
+                android:layout_width="@dimen/feedback_edittext_width"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_mandatory"
+                android:inputType="phone"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/feedback_cust_bd_view"
+                android:layout_width="@dimen/feedback_textview_width"
+                android:layout_height="wrap_content"
+                android:text="@string/feedback_cust_bd"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/feedback_form_button_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/feedback_form_button_date" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/feedback_form_button_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save" />
+
+    </LinearLayout>
+
+</FrameLayout>

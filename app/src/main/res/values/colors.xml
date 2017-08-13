@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#fa8f03</color>
+    <color name="colorPrimaryDark">#ff6701</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorWindowBackGround">#000000</color>
+    <color name="colorTextPrimary">#fa8f03</color>
+
+    <color name="amoledBlack">#000000</color>
+    <color name="amoledText">#FFFFFF</color>
+    <color name="amoledBGText">#747474</color>
+    <color name="amoledBG">#C9FEFC</color>
+    <color name="amoledHint">#BDC3C3</color>
+
+    <!--<color name="rating_activated">#fd4d00</color>
+    <color name="rating_normal">#159900</color>-->
+    <color name="rating_low">#F21600</color>
+    <color name="rating_medium">#FBFF00</color>
+    <color name="rating_high">#079E00</color>
+</resources>

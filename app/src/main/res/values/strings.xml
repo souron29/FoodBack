@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Foodback</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="feedback_button_enter">Enter Feedback</string>
+    <string name="hint_mandatory">Mandatory</string>
+    <string name="feedback_cust_name">Customer Name</string>
+    <string name="feedback_cust_ph">Phone Number</string>
+    <string name="feedback_cust_bd">Birthday</string>
+    <string name="feedback_form_button_date">Set Date</string>
+    <string name="save">Save</string>
+    <string name="textview_ambiance">Ambiance</string>
+    <string name="radio_awesome">Awesome</string>
+    <string name="radio_okay">Okay</string>
+    <string name="radio_poor">Poor</string>
+    <string name="textview_food">Food</string>
+    <string name="textview_service">Service</string>
+    <string name="feedback_form_hint_editText">Any Suggestions</string>
+
+    <string name="menu_clear_all">Clear All</string>
+    <!-- Navigation Menu -->
+    <string name="nav_item_feedback">Feedback</string>
+    <string name="nav_item_customer">Customers</string>
+    <string name="nav_item_review">Reviews</string>
+    <!-- Settings Strings -->
+    <string name="settings_general">General</string>
+    <string name="settings_title_name">Outlet Name</string>
+    <string name="settings_def_name">Restaurant</string>
+    <string name="settings_dialog_name">Name of your Outlet</string>
+    <string name="settings_title_email">Outlet Email</string>
+    <string name="settings_dialog_email">Email</string>
+
+    <string name="settings_lock_category">Lock</string>
+    <string name="settings_lock_switch_title">Enable Lock</string>
+    <string name="settings_lock_title">Pin Code</string>
+</resources>
