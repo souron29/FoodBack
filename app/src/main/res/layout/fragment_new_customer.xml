@@ -77,8 +77,8 @@
 
         <Button
             android:id="@+id/feedback_form_button_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Button"
+            android:layout_gravity="center_horizontal"
             android:text="@string/save" />
 
     </LinearLayout>

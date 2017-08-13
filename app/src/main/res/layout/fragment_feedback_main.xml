@@ -9,7 +9,6 @@
         android:id="@+id/feedback_main_button_feed"
         style="@style/Button"
         android:layout_gravity="center"
-        android:padding="5dp"
         android:text="@string/feedback_button_enter" />
 
 </FrameLayout>
