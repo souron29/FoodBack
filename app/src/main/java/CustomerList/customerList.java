@@ -16,7 +16,6 @@ import database.DBMethods;
 import database.DBSchema;
 
 public class customerList extends AdvanceFragment implements OnGetWorkListener {
-    /*View view;*/
     RecyclerView mRecyclerView;
     CustomerAdapter mAdapter;
 
@@ -25,38 +24,10 @@ public class customerList extends AdvanceFragment implements OnGetWorkListener {
     }
 
 
-   /* @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_customer_list, container, false);
-        init(view);
-        mAdapter = new CustomerAdapter(getActivity());
-
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        AsyncFunctions async = new AsyncFunctions(getActivity());
-        async.loadCustomers(this);
-        return view;
-    }*/
-
-    /*private void init(View view) {
-        mRecyclerView = view.findViewById(R.id.recycler_view_customer_list);
-    }*/
-
     @Override
     public void workSomething(int work_id) {
         if (work_id == 1) mAdapter.reset();
     }
-
-    /*@Override
-    protected FragmentManager setParentFragManager() {
-        return getFragmentManager();
-    }
-
-    @Override
-    protected FragmentManager setChildFragManager() {
-        return getChildFragmentManager();
-    }*/
 
     @Override
     protected int setOptionsMenu() {
@@ -107,6 +78,7 @@ public class customerList extends AdvanceFragment implements OnGetWorkListener {
                         public void onClick(DialogInterface dialog, int which) {
                             DBMethods.connect(getActivity());
                             DBMethods.delete(DBSchema.Customers.TableName, null);
+                            DBMethods.delete(DBSchema.Reviews.TableName, null);
                             fragmentReset();
                             DBMethods.disconnect(null);
                         }
