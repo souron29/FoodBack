@@ -40,7 +40,8 @@ public class MainActivity extends AdvanceActivity
         // setting outlet names
         String outletName = sharedPref.getString(KeyVariables.KEY_COMPANY_NAME, getResources().getString(R.string.settings_def_name));
         String outletEmail = sharedPref.getString(KeyVariables.KEY_COMPANY_EMAIL, CommonFunctions.clipString(outletName, new String[]{" "}) + "@email.com");
-        getSupportActionBar().setTitle(outletName);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setTitle(outletName);
         navHeaderName = header.findViewById(R.id.textview_navbar_name);
         navHeaderEmail = header.findViewById(R.id.textview_navbar_email);
         navHeaderName.setText(outletName);
@@ -73,7 +74,7 @@ public class MainActivity extends AdvanceActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -168,12 +169,10 @@ public class MainActivity extends AdvanceActivity
                 }
             };
             checkLock(r);
-
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 }
