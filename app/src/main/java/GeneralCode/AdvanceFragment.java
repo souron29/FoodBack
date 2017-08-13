@@ -15,10 +15,7 @@ public abstract class AdvanceFragment extends Fragment implements OnBackPressLis
     FragmentManager parentFM, childFM;
     int view_id, menu_id = 0;
     private View fragmentView;
-
-    public View getFragmentView() {
-        return fragmentView;
-    }
+    private AdvanceFunctions f;
 
     @Nullable
     @Override
@@ -30,7 +27,7 @@ public abstract class AdvanceFragment extends Fragment implements OnBackPressLis
         if (menu_id != 0) {
             setHasOptionsMenu(true);
         }
-
+        f = new AdvanceFunctions(getActivity());
         initializeViews();
         afterViewsInitialized();
         return fragmentView;
@@ -85,42 +82,6 @@ public abstract class AdvanceFragment extends Fragment implements OnBackPressLis
 
     }
 
-    /*public boolean onBackPressed(AdvanceFragment prevFragmnet) {
-        setFragmentManagers();
-        int childCount = childFM != null ? childFM.getBackStackEntryCount() : 0;
-        int siblingCount = parentFM != null ? parentFM.getBackStackEntryCount() : 0;
-
-        if (childCount == 0) {
-            if (siblingCount == 0) return false;
-            else {
-                int currentIndex = getFragIndexAtBAckStack(parentFM, this);
-                if (currentIndex < parentFM.getBackStackEntryCount() - 1) {
-                    AdvanceFragment siblingFrag;
-                    siblingFrag = (AdvanceFragment) parentFM.findFragmentByTag(parentFM.getBackStackEntryAt(currentIndex + 1).getName());
-                    return siblingFrag.onBackPressed(this);
-
-                } else {
-
-                    this.fragmentReset();
-                    parentFM.popBackStackImmediate();
-                    if (prevFragmnet != null)
-                        prevFragmnet.fragmentReset();
-                    return true;
-                }
-
-            }
-
-        } else {
-            AdvanceFragment childFrag = (AdvanceFragment) childFM.findFragmentByTag(childFM.getBackStackEntryAt(0).getName());
-            if (!childFrag.onBackPressed(this)) {
-                childFM.popBackStackImmediate();
-                ((AdvanceFragment) childFM.findFragmentByTag(childFM.getBackStackEntryAt(childFM.getBackStackEntryCount() - 1).getName())).fragmentReset();
-            }
-            return true;
-        }
-
-    }*/
-
     private int getFragIndexAtBAckStack(FragmentManager fm, AdvanceFragment fragment) {
         String fragmentName = fragment.getClass().getSimpleName();
         for (int i = 0; i < fm.getBackStackEntryCount(); i++) {
@@ -150,5 +111,9 @@ public abstract class AdvanceFragment extends Fragment implements OnBackPressLis
 
     protected <T extends View> T $(int view_id) {
         return fragmentView.findViewById(view_id);
+    }
+
+    protected <T extends Object> T $(String resourceType, String resourceName) {
+        return AdvanceFunctions.getResource(getActivity(), resourceType, resourceName);
     }
 }
