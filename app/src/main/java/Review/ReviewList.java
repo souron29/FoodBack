@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.dexlabs.extraloyaljuice.R;
 
@@ -18,6 +20,7 @@ import database.DBSchema;
 public class ReviewList extends AdvanceFragment implements OnGetWorkListener {
     private RecyclerView mRecyclerView;
     private ReviewAdapter mAdapter;
+    private TextView defaultScreen;
 
     public ReviewList() {
         // Required empty public constructor
@@ -43,6 +46,7 @@ public class ReviewList extends AdvanceFragment implements OnGetWorkListener {
     @Override
     protected void initializeViews() {
         mRecyclerView = $(R.id.recycler_view_review_list);
+        defaultScreen = $(R.id.tv_frag_def);
     }
 
     @Override
@@ -84,13 +88,18 @@ public class ReviewList extends AdvanceFragment implements OnGetWorkListener {
     }
 
     @Override
-    protected void hide() {
+    public void workSomething(int work_id) {
+        if (work_id == RESTART) mAdapter.reset();
+        if (work_id == SHOW) show();
+        if (work_id == HIDE) hide();
+    }
 
+    void show() {
+        defaultScreen.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void workSomething(int work_id) {
-
-        if (work_id == 1) mAdapter.reset();
+    protected void hide() {
+        defaultScreen.setVisibility(View.GONE);
     }
 }

@@ -130,4 +130,8 @@ public abstract class AdvanceSettingsFragment extends PreferenceFragment impleme
 
     protected abstract void fragmentReset();
 
+    protected <T extends Object> T $(String resourceType, String resourceName) {
+        return AdvanceFunctions.getResource(getActivity(), resourceType, resourceName);
+    }
+
 }

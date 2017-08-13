@@ -18,7 +18,6 @@ import Settings.KeyVariables;
 
 public abstract class AdvanceActivity<F extends Fragment> extends AppCompatActivity {
 
-    private View activityView;
     private AdvanceFragment currentNavFragment = null;
     private AdvanceSettingsFragment currentOptionsFragment = null;
 
@@ -36,7 +35,6 @@ public abstract class AdvanceActivity<F extends Fragment> extends AppCompatActiv
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(setLayout());
-        activityView = this.findViewById(setLayout());
 
         ViewInitialization();
         init();
@@ -49,10 +47,6 @@ public abstract class AdvanceActivity<F extends Fragment> extends AppCompatActiv
 
         loadSettings(sharedPref);
     }
-
-    protected abstract void AfterViewCreated();
-
-    protected abstract void loadSettings(SharedPreferences sharedPref);
 
     protected void loadParentFragment(final F frag, final int container_id, final boolean removePrevious) {
         if (removePrevious) {
@@ -105,14 +99,6 @@ public abstract class AdvanceActivity<F extends Fragment> extends AppCompatActiv
 
     }
 
-    protected <T extends View> T $(int view_id) {
-        return findViewById(view_id);
-    }
-
-    protected abstract int setLayout();
-
-    protected abstract void ViewInitialization();
-
     protected void checkLock(final Runnable r) {
         final SharedPreferences pref =
                 PreferenceManager.getDefaultSharedPreferences(this);
@@ -144,5 +130,27 @@ public abstract class AdvanceActivity<F extends Fragment> extends AppCompatActiv
 
         } else r.run();
 
+    }
+
+    protected <T extends View> T $(int view_id) {
+        return findViewById(view_id);
+    }
+
+    protected abstract int setLayout();
+
+    protected abstract void ViewInitialization();
+
+    protected abstract void AfterViewCreated();
+
+    protected abstract void loadSettings(SharedPreferences sharedPref);
+
+    public void hide() {
+    }
+
+    public void show() {
+    }
+
+    protected <T extends Object> T $(String resourceType, String resourceName) {
+        return AdvanceFunctions.getResource(this, resourceType, resourceName);
     }
 }

@@ -12,4 +12,7 @@
     <dimen name="feedback_form_textview_width">120dp</dimen>
     <dimen name="feedback_form_edittext_height">120dp</dimen>
 
+    <dimen name="text_small">18sp</dimen>
+    <dimen name="text_medium">25sp</dimen>
+
 </resources>

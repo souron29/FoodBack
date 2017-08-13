@@ -4,9 +4,16 @@
     android:layout_height="match_parent"
     tools:context="CustomerList.customerList">
 
+    <TextView
+        android:id="@+id/tv_frag_def"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/frag_def_customers"
+        android:textSize="@dimen/text_small" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_customer_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent" />
 
 </FrameLayout>

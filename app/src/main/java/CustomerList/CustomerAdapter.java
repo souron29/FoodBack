@@ -12,15 +12,19 @@ import com.dexlabs.extraloyaljuice.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import GeneralCode.OnGetWorkListener;
+
 class CustomerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
     private ArrayList<String> cNames;
     private HashMap<String, customerDS> cList;
+    private OnGetWorkListener mWork;
 
-    public CustomerAdapter(Context mContext) {
+    public CustomerAdapter(Context mContext, OnGetWorkListener work) {
         this.mContext = mContext;
         this.cNames = new ArrayList<>();
         this.cList = new HashMap<>();
+        this.mWork = work;
     }
 
     void reset() {
@@ -56,9 +60,12 @@ class CustomerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.cNames = CustomerDriver.getCustomerNames();
         this.cList = CustomerDriver.getCustomerList();
 
-        if (this.cNames != null) {
+        if (this.cNames != null && this.cNames.size() > 0) {
+            mWork.workSomething(OnGetWorkListener.HIDE);
             return this.cNames.size();
         }
+
+        mWork.workSomething(OnGetWorkListener.SHOW);
         return 0;
     }
 

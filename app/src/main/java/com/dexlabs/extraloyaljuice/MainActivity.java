@@ -26,9 +26,8 @@ import Settings.SettingsFragment;
 
 public class MainActivity extends AdvanceActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    TextView navHeaderName, navHeaderEmail;
-    View header;
-
+    private View header;
+    private FloatingActionButton fab;
 
     @Override
     protected void AfterViewCreated() {
@@ -42,13 +41,25 @@ public class MainActivity extends AdvanceActivity
         String outletEmail = sharedPref.getString(KeyVariables.KEY_COMPANY_EMAIL, CommonFunctions.clipString(outletName, new String[]{" "}) + "@email.com");
         if (getSupportActionBar() != null)
             getSupportActionBar().setTitle(outletName);
-        navHeaderName = header.findViewById(R.id.textview_navbar_name);
-        navHeaderEmail = header.findViewById(R.id.textview_navbar_email);
+        TextView navHeaderName = header.findViewById(R.id.textview_navbar_name);
+        TextView navHeaderEmail = header.findViewById(R.id.textview_navbar_email);
         navHeaderName.setText(outletName);
         navHeaderEmail.setText(outletEmail);
 
         //setting lock
 
+    }
+
+    @Override
+    public void hide() {
+        fab.hide();
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        fab.show();
+        loadSettings(PreferenceManager.getDefaultSharedPreferences(this));
     }
 
     @Override
@@ -62,7 +73,7 @@ public class MainActivity extends AdvanceActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,23 +91,8 @@ public class MainActivity extends AdvanceActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         header = navigationView.getHeaderView(0);
-
         init();
-
     }
-
-    /*private class DrawerItemClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-            selectItem(pos);
-        }
-    }*/
-
-    /*private void selectItem(int position) {
-        mDrawerList.setItemChecked(position, true);
-        setTitle(mPlanetTitles[position]);
-        mDrawerLayout.closeDrawer(mDrawerList);
-    }*/
 
     private void init() {
         CommonVariables.setCurrentDate();

@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.dexlabs.extraloyaljuice.R;
 
@@ -20,6 +22,7 @@ public class customerList extends AdvanceFragment implements OnGetWorkListener {
     RecyclerView mRecyclerView;
     CustomerAdapter mAdapter;
     AdvanceFunctions f;
+    TextView defaultScreen;
 
     public customerList() {
         // Required empty public constructor
@@ -28,7 +31,9 @@ public class customerList extends AdvanceFragment implements OnGetWorkListener {
 
     @Override
     public void workSomething(int work_id) {
-        if (work_id == 1) mAdapter.reset();
+        if (work_id == RESTART) mAdapter.reset();
+        if (work_id == SHOW) show();
+        if (work_id == HIDE) hide();
     }
 
     @Override
@@ -51,11 +56,12 @@ public class customerList extends AdvanceFragment implements OnGetWorkListener {
     @Override
     protected void initializeViews() {
         mRecyclerView = $(R.id.recycler_view_customer_list);
+        defaultScreen = $(R.id.tv_frag_def);
     }
 
     @Override
     protected void afterViewsInitialized() {
-        mAdapter = new CustomerAdapter(getActivity());
+        mAdapter = new CustomerAdapter(getActivity(), this);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         AsyncFunctions async = new AsyncFunctions(getActivity());
@@ -63,9 +69,13 @@ public class customerList extends AdvanceFragment implements OnGetWorkListener {
         f = new AdvanceFunctions(getActivity());
     }
 
+    void show() {
+        defaultScreen.setVisibility(View.VISIBLE);
+    }
+
     @Override
     protected void hide() {
-
+        defaultScreen.setVisibility(View.GONE);
     }
 
     @Override

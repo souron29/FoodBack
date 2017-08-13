@@ -38,4 +38,6 @@
     <string name="settings_lock_category">Lock</string>
     <string name="settings_lock_switch_title">Enable Lock</string>
     <string name="settings_lock_title">Pin Code</string>
+    <string name="frag_def_customers">No Customers</string>
+    <string name="frag_def_reviews">No Reviews</string>
 </resources>
