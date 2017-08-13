@@ -1,6 +1,5 @@
 package GeneralCode;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -47,7 +46,7 @@ public abstract class AdvanceSettingsFragment extends PreferenceFragment impleme
     }
 
     @Override
-    public boolean onBackPressed(Fragment frag) {
+    public boolean onBackPressed(AdvanceFragment frag) {
         setFragmentManagers();
         ((AdvanceActivity) getActivity()).resetParentFragment();
         parentFM.popBackStackImmediate();

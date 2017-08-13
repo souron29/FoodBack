@@ -1,9 +1,7 @@
 package GeneralCode;
 
-import android.app.Fragment;
-
 public interface OnBackPressListener {
-    boolean onBackPressed(Fragment parent);
+    boolean onBackPressed(AdvanceFragment parent);
 
     void Reset();
 }

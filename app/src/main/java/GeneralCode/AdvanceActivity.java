@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -53,6 +54,7 @@ public abstract class AdvanceActivity<F extends Fragment> extends AppCompatActiv
             if (currentNavFragment != null) {
 
                 if (!Objects.equals(currentNavFragment.getClass().getSimpleName(), frag.getClass().getSimpleName())) {
+                    Log.i("TAG", "loadParentFragment: ");
                     getFragmentManager().beginTransaction().remove(currentNavFragment).commit();
                     if (currentOptionsFragment != null)
                         getFragmentManager().beginTransaction().remove(currentOptionsFragment).commit();

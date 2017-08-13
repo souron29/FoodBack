@@ -130,7 +130,6 @@ public class MainActivity extends AdvanceActivity
                 }
             };
             checkLock(r);
-
             return true;
         }
 
@@ -144,9 +143,7 @@ public class MainActivity extends AdvanceActivity
         int id = item.getItemId();
         Runnable r;
         if (id == R.id.nav_item_feedback) {
-
             loadParentFragment(new feedback_main(), R.id.main_container, true);
-
         }
         if (id == R.id.nav_item_customer) {
             r = new Runnable() {

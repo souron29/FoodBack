@@ -39,22 +39,54 @@ public abstract class AdvanceFragment extends Fragment implements OnBackPressLis
     }
 
     @Override
-    public boolean onBackPressed(Fragment parent) {
+    public boolean onBackPressed(AdvanceFragment parent) {
         setFragmentManagers();
-        int childCount = childFM != null ? childFM.getBackStackEntryCount() : 0;
-        int siblingCount = parentFM != null ? parentFM.getBackStackEntryCount() : 0;
+        int count;
+        try {
+            count = childFM != null ? childFM.getBackStackEntryCount() : 0;
+            if (count > 1) {
+                AdvanceFragment childFrag = (AdvanceFragment) childFM.findFragmentByTag(childFM.getBackStackEntryAt(0).getName());
+                return childFrag.onBackPressed(this);
+            } else {
+                childFM.popBackStackImmediate();
+                return true;
+            }
+        } catch (NullPointerException e) {
+            try {
+                count = parentFM != null ? parentFM.getBackStackEntryCount() : 0;
+                if (count > 1) {
+                    AdvanceFragment siblingFrag = (AdvanceFragment) parentFM.findFragmentByTag(parentFM.getBackStackEntryAt(0).getName());
+                    return siblingFrag.onBackPressed(this);
+                } else {
+                    parentFM.popBackStackImmediate();
+                    parent.fragmentReset();
+                    return true;
+                }
 
-        if (childCount == 0) {
-            if (siblingCount == 0) return false;
+            } catch (Exception e1) {
+                return false;
+            }
+        }
+
+        /*if (childCount == 0) {
+            if (siblingCount == 1) return false;
             else {
                 int currentIndex = getFragIndexAtBAckStack(parentFM, this);
                 if (currentIndex < parentFM.getBackStackEntryCount() - 1) {
                     AdvanceFragment siblingFrag;
                     siblingFrag = (AdvanceFragment) parentFM.findFragmentByTag(parentFM.getBackStackEntryAt(currentIndex + 1).getName());
                     return siblingFrag.onBackPressed(this);
+                    *//*if (siblingFrag.onBackPressed(this)) return true;
+                    else {// Suppose when you want skip jumping to previous fragment
+                        this.fragmentReset();
+                        parentFM.popBackStackImmediate();
+                        childFM.popBackStackImmediate();
+                        if (parent != null)
+                            ((OnBackPressListener) parent).Reset();
+                        return true;
+                    }*//*
 
                 } else {
-
                     this.fragmentReset();
                     parentFM.popBackStackImmediate();
                     if (parent != null)
@@ -71,7 +103,7 @@ public abstract class AdvanceFragment extends Fragment implements OnBackPressLis
                 ((AdvanceFragment) childFM.findFragmentByTag(childFM.getBackStackEntryAt(childFM.getBackStackEntryCount() - 1).getName())).fragmentReset();
             }
             return true;
-        }
+        }*/
     }
 
 

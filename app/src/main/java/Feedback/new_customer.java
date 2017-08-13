@@ -27,53 +27,10 @@ public class new_customer extends AdvanceFragment {
     private Button datepick, save;
     private EditText edit_cust_name;
     private EditText edit_cust_phone;
-    /*View view;*/
-
 
     public new_customer() {
         // Required empty public constructor
     }
-
-
-    /*@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_new_customer, container, false);
-
-        init(view);
-        initArgs(getArguments());
-        return view;
-    }*/
-
-    /*private void initArgs(Bundle args) {
-        if (args != null) {
-            String number = args.getString("number");
-            edit_cust_phone.setText(number);
-        }
-    }*/
-
-    /*private void init(View view) {
-        datepick = view.findViewById(R.id.feedback_form_button_date);
-        save = view.findViewById(R.id.feedback_form_button_save);
-
-        edit_cust_name = view.findViewById(R.id.feedback_cust_name_edit);
-        edit_cust_phone = view.findViewById(R.id.feedback_cust_ph_edit);
-        datepick.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment newFragment = new DatePickerFragment();
-                newFragment.show(getFragmentManager(), "datePicker");
-
-            }
-        });
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onPreSave())
-                    save();
-            }
-        });
-    }*/
 
     private boolean onPreSave() {
         String name = edit_cust_name.getText().toString();
@@ -112,26 +69,9 @@ public class new_customer extends AdvanceFragment {
         DBMethods.connect(getActivity());
         DBMethods.insert(DBSchema.Customers.TableName, cv);
         DBMethods.disconnect(null);
-
-        getChildFragmentManager().beginTransaction().remove(this).commit();
+        getFragmentManager().beginTransaction().remove(this).commit();
         ((feedback_main) getParentFragment()).startFeedbackForm(number);
-
     }
-
-    /*@Override
-    public void BackPressReset() {
-        ((feedback_main) getParentFragment()).reset();
-    }*/
-
-    /*@Override
-    protected FragmentManager setParentFragManager() {
-        return getFragmentManager();
-    }
-
-    @Override
-    protected FragmentManager setChildFragManager() {
-        return getChildFragmentManager();
-    }*/
 
     @Override
     protected int setOptionsMenu() {
@@ -140,7 +80,7 @@ public class new_customer extends AdvanceFragment {
 
     @Override
     public void fragmentReset() {
-        /*((feedback_main) getParentFragment()).reset();*/
+
     }
 
     @Override
@@ -179,6 +119,7 @@ public class new_customer extends AdvanceFragment {
                     save();
             }
         });
+        CommonVariables.dateset = false;
     }
 
     @Override

@@ -119,7 +119,7 @@ public class feedback_main extends AdvanceFragment {
                                     Bundle args = new Bundle();
                                     args.putString("number", number);
                                     frag.setArguments(args);
-                                    getChildFragmentManager().beginTransaction().replace(R.id.feedback_main_container, frag, "feedback_new_customer").addToBackStack("feedback_new_customer").commit();
+                                    getChildFragmentManager().beginTransaction().replace(R.id.feedback_main_container, frag, "feedback_new_customer").commit();
                                     hide();
                                 }
                             }
@@ -151,10 +151,6 @@ public class feedback_main extends AdvanceFragment {
 
     }
 
-    public void reset() {
-
-    }
-
     void startFeedbackForm(String number) {
         Fragment fragForm = new feedback_form();
         DBMethods.connect(getActivity());
@@ -167,16 +163,6 @@ public class feedback_main extends AdvanceFragment {
         }
         getChildFragmentManager().beginTransaction().replace(R.id.feedback_main_container, fragForm, "feedback_form").addToBackStack("feedback_form").commit();
     }
-
-    /*@Override
-    protected FragmentManager setParentFragManager() {
-        return getFragmentManager();
-    }
-
-    @Override
-    protected FragmentManager setChildFragManager() {
-        return getChildFragmentManager();
-    }*/
 
     @Override
     protected int setOptionsMenu() {

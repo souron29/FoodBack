@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.dexlabs.extraloyaljuice.R;
 
+import GeneralCode.AdvanceActivity;
 import GeneralCode.AdvanceFragment;
 import GeneralCode.CommonFunctions;
 import database.DBMethods;
@@ -62,8 +63,35 @@ public class feedback_form extends AdvanceFragment {
         }
     };
 
-    public feedback_form() {
-        // Required empty public constructor
+    @Override
+    protected int setFragmentLayoutID() {
+        return R.layout.fragment_feedback_form;
+    }
+
+    @Override
+    protected void initializeViews() {
+        ambiance = $(R.id.rating_ambiance);
+        food = $(R.id.rating_food);
+        service = $(R.id.rating_service);
+        suggestion = $(R.id.edittext_feedback_form_suggestion);
+        save_button = $(R.id.button_feedback_form_save);
+    }
+
+    @Override
+    protected void afterViewsInitialized() {
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+            customer_id = arguments.getLong("customer_id");
+        }
+        save_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                save();
+            }
+        });
+        ambiance.setOnRatingBarChangeListener(ratingListener);
+        food.setOnRatingBarChangeListener(ratingListener);
+        service.setOnRatingBarChangeListener(ratingListener);
     }
 
     private void save() {
@@ -109,43 +137,15 @@ public class feedback_form extends AdvanceFragment {
 
     @Override
     public void fragmentReset() {
-        /*((feedback_main) getParentFragment()).reset();*/
-    }
-
-    @Override
-    protected int setFragmentLayoutID() {
-        return R.layout.fragment_feedback_form;
-    }
-
-    @Override
-    protected void initializeViews() {
-        ambiance = $(R.id.rating_ambiance);
-        food = $(R.id.rating_food);
-        service = $(R.id.rating_service);
-        suggestion = $(R.id.edittext_feedback_form_suggestion);
-        save_button = $(R.id.button_feedback_form_save);
-    }
-
-    @Override
-    protected void afterViewsInitialized() {
-        Bundle arguments = getArguments();
-        if (arguments != null) {
-            customer_id = arguments.getLong("customer_id");
-        }
-        save_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                save();
-            }
-        });
-        ambiance.setOnRatingBarChangeListener(ratingListener);
-        food.setOnRatingBarChangeListener(ratingListener);
-        service.setOnRatingBarChangeListener(ratingListener);
+        ((AdvanceActivity) getActivity()).show();
     }
 
     @Override
     protected void hide() {
 
     }
-
+    /*@Override
+    public boolean onBackPressed(Fragment parent) {
+        return false;
+    }*/
 }
