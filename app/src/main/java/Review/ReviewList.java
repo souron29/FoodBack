@@ -61,8 +61,8 @@ public class ReviewList extends AdvanceFragment implements OnGetWorkListener {
         if (id == R.id.menu_clear_all) {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
             alertDialog.setTitle("Clear All Contents");
-
-            alertDialog.setPositiveButton("Yes",
+            String yes_no = $("string", "yes");
+            alertDialog.setPositiveButton(yes_no,
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             DBMethods.connect(getActivity());
@@ -71,7 +71,8 @@ public class ReviewList extends AdvanceFragment implements OnGetWorkListener {
                             DBMethods.disconnect(null);
                         }
                     });
-            alertDialog.setNegativeButton("No",
+            yes_no = $("string", "no");
+            alertDialog.setNegativeButton(yes_no,
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();

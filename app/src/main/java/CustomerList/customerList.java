@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import com.dexlabs.extraloyaljuice.R;
 
 import GeneralCode.AdvanceFragment;
+import GeneralCode.AdvanceFunctions;
 import GeneralCode.AsyncFunctions;
 import GeneralCode.OnGetWorkListener;
 import database.DBMethods;
@@ -18,6 +19,7 @@ import database.DBSchema;
 public class customerList extends AdvanceFragment implements OnGetWorkListener {
     RecyclerView mRecyclerView;
     CustomerAdapter mAdapter;
+    AdvanceFunctions f;
 
     public customerList() {
         // Required empty public constructor
@@ -58,7 +60,7 @@ public class customerList extends AdvanceFragment implements OnGetWorkListener {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         AsyncFunctions async = new AsyncFunctions(getActivity());
         async.loadCustomers(this);
-
+        f = new AdvanceFunctions(getActivity());
     }
 
     @Override
@@ -72,8 +74,8 @@ public class customerList extends AdvanceFragment implements OnGetWorkListener {
         if (id == R.id.menu_clear_all) {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
             alertDialog.setTitle("Clear All Contents");
-
-            alertDialog.setPositiveButton("Yes",
+            String yes_no = $("string", "yes");
+            alertDialog.setPositiveButton(yes_no,
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             DBMethods.connect(getActivity());
@@ -83,7 +85,8 @@ public class customerList extends AdvanceFragment implements OnGetWorkListener {
                             DBMethods.disconnect(null);
                         }
                     });
-            alertDialog.setNegativeButton("No",
+            yes_no = $("string", "no");
+            alertDialog.setNegativeButton(yes_no,
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
