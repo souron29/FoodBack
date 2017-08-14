@@ -2,15 +2,18 @@ package GeneralCode;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.Objects;
@@ -21,6 +24,7 @@ public abstract class AdvanceActivity<F extends Fragment> extends AppCompatActiv
 
     private AdvanceFragment currentNavFragment = null;
     private AdvanceSettingsFragment currentOptionsFragment = null;
+    private Context mContext;
 
     public AdvanceActivity() {
     }
@@ -36,10 +40,11 @@ public abstract class AdvanceActivity<F extends Fragment> extends AppCompatActiv
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(setLayout());
-
+        mContext = this;
         ViewInitialization();
         init();
         AfterViewCreated();
+
     }
 
     private void init() {
@@ -106,36 +111,70 @@ public abstract class AdvanceActivity<F extends Fragment> extends AppCompatActiv
                 PreferenceManager.getDefaultSharedPreferences(this);
         if (pref.getBoolean(KeyVariables.KEY_PIN_ENABLED, false)) {
 
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-            alertDialog.setTitle("Pin Code");
+            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+            alertBuilder.setTitle("Pin Code");
             final EditText input = new EditText(this);
             input.setHint("Enter Pin Code");
             input.setInputType(InputType.TYPE_NUMBER_VARIATION_PASSWORD);
-            alertDialog.setView(input);
-            alertDialog.setPositiveButton("Check",
+            alertBuilder.setView(input);
+            alertBuilder.setCancelable(false);
+            alertBuilder.setPositiveButton("Check", null/*
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            int pin = Integer.valueOf(pref.getString(KeyVariables.KEY_PIN_CODE, "0"));
-                            if (pin != 0) {
-                                if (pin == Integer.valueOf(input.getText().toString())) r.run();
+                            int pin;
+                            try {
+                                pin = Integer.valueOf(pref.getString(KeyVariables.KEY_PIN_CODE, "0"));
+                                if (pin != 0) {
+                                    if (pin == Integer.valueOf(input.getText().toString())) r.run();
+                                }
+                            } catch (NumberFormatException e) {
+                                AdvanceFunctions.shortToast(mContext, "Please Enter Numeric Code");
                             }
                         }
-                    });
-            alertDialog.setNegativeButton("Cancel",
+                    }*/);
+            alertBuilder.setNegativeButton("Cancel",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
                         }
                     });
 
-            alertDialog.show();
+            AlertDialog al = alertBuilder.create();
+            al.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(final DialogInterface dialog) {
+                    Log.i("TAG", "onShow: ");
+                    Button pb = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                    pb.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Log.i("TAG", "onClick: ");
+                            int pin;
+                            try {
+                                pin = Integer.valueOf(pref.getString(KeyVariables.KEY_PIN_CODE, "0"));
+                                if (pin != 0) {
 
+                                    if (pin == Integer.valueOf(input.getText().toString())) r.run();
+                                    dialog.dismiss();
+                                }
+                            } catch (NumberFormatException e) {
+                                AdvanceFunctions.shortToast(mContext, "Please Enter Numeric Code");
+                                input.setText("");
+                                Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                                long[] pattern = {0, 3000, 3000};
+                                v.vibrate(pattern, -1);
+                            }
+                        }
+                    });
+                }
+            });
+            al.show();
         } else r.run();
 
     }
 
     protected <T extends View> T $(int view_id) {
-        return findViewById(view_id);
+        return (T) findViewById(view_id);
     }
 
     protected abstract int setLayout();
@@ -155,4 +194,6 @@ public abstract class AdvanceActivity<F extends Fragment> extends AppCompatActiv
     protected <T extends Object> T $(String resourceType, String resourceName) {
         return AdvanceFunctions.getResource(this, resourceType, resourceName);
     }
+
+
 }

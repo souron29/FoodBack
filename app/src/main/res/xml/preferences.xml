@@ -8,7 +8,7 @@
             android:key="key_company_name"
             android:title="@string/settings_title_name" />
         <EditTextPreference
-            android:dialogTitle="@string/settings_dialog_name"
+            android:dialogTitle="@string/settings_dialog_email"
             android:inputType="textEmailAddress"
             android:key="key_company_email"
             android:title="@string/settings_title_email" />

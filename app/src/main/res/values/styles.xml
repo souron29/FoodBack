@@ -7,7 +7,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
-
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -27,4 +26,13 @@
         <item name="android:padding">5dp</item>
     </style>
 
+    <style name="AccentedTextMedium" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="DarkBackGround">
+        <item name="android:background">@color/amoledBlack</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
 </resources>

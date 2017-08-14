@@ -5,17 +5,19 @@ import android.content.ContentValues;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
-import com.dexlabs.extraloyaljuice.R;
+import com.dexlabs.foodback.R;
 
 import GeneralCode.AdvanceActivity;
 import GeneralCode.AdvanceFragment;
+import GeneralCode.AdvanceFunctions;
 import GeneralCode.CommonFunctions;
 import database.DBMethods;
 import database.DBSchema;
@@ -25,8 +27,8 @@ public class feedback_form extends AdvanceFragment {
     RatingBar ambiance, food, service;
 
     Button save_button;
-    EditText suggestion;
-
+    TextInputEditText suggestion;
+    TextInputLayout wrapper;
     long customer_id;
     RatingBar.OnRatingBarChangeListener ratingListener = new RatingBar.OnRatingBarChangeListener() {
         @SuppressWarnings("deprecation")
@@ -41,6 +43,9 @@ public class feedback_form extends AdvanceFragment {
                     layerDrawable.getDrawable(1).setTint(getResources().getColor(R.color.rating_low));
                     layerDrawable.getDrawable(2).setTint(getResources().getColor(R.color.rating_low));
                 }
+                if (ambiance.getRating() < 3 || service.getRating() < 3 || food.getRating() < 3) {
+                    wrapper.setHint(AdvanceFunctions.getResource(getActivity(), "string", "ff_suggestion_poor").toString());
+                }
             } else if ((int) rating <= 4) {
                 LayerDrawable layerDrawable = (LayerDrawable) ratingBar.getProgressDrawable();
                 if (Build.VERSION.SDK_INT >= 23) {
@@ -50,6 +55,9 @@ public class feedback_form extends AdvanceFragment {
                     layerDrawable.getDrawable(1).setTint(getResources().getColor(R.color.rating_medium));
                     layerDrawable.getDrawable(2).setTint(getResources().getColor(R.color.rating_medium));
                 }
+                if (ambiance.getRating() > 2 && service.getRating() > 2 && food.getRating() > 2) {
+                    wrapper.setHint(AdvanceFunctions.getResource(getActivity(), "string", "ff_suggestion_okay").toString());
+                }
             } else {
                 LayerDrawable layerDrawable = (LayerDrawable) ratingBar.getProgressDrawable();
                 if (Build.VERSION.SDK_INT >= 23) {
@@ -58,6 +66,9 @@ public class feedback_form extends AdvanceFragment {
                 } else {
                     layerDrawable.getDrawable(1).setTint(getResources().getColor(R.color.rating_high));
                     layerDrawable.getDrawable(2).setTint(getResources().getColor(R.color.rating_high));
+                }
+                if (ambiance.getRating() > 2 && service.getRating() > 2 && food.getRating() > 2) {
+                    wrapper.setHint(AdvanceFunctions.getResource(getActivity(), "string", "ff_suggestion_okay").toString());
                 }
             }
         }
@@ -73,8 +84,9 @@ public class feedback_form extends AdvanceFragment {
         ambiance = $(R.id.rating_ambiance);
         food = $(R.id.rating_food);
         service = $(R.id.rating_service);
-        suggestion = $(R.id.edittext_feedback_form_suggestion);
-        save_button = $(R.id.button_feedback_form_save);
+        suggestion = $(R.id.et_feedback_form_suggestion);
+        save_button = $(R.id.bt_feedback_form_save);
+        wrapper = $(R.id.til_feedback_form);
     }
 
     @Override
@@ -92,6 +104,7 @@ public class feedback_form extends AdvanceFragment {
         ambiance.setOnRatingBarChangeListener(ratingListener);
         food.setOnRatingBarChangeListener(ratingListener);
         service.setOnRatingBarChangeListener(ratingListener);
+
     }
 
     private void save() {
@@ -99,7 +112,6 @@ public class feedback_form extends AdvanceFragment {
             float ambiance_rating = ambiance.getRating();
             float food_rating = food.getRating();
             float service_rating = service.getRating();
-
             String feedback = suggestion.getText().toString();
             ContentValues cv = new ContentValues();
             cv.put(DBSchema.Reviews.CUSTOMER_ID, customer_id);

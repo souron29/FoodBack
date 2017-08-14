@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.dexlabs.extraloyaljuice.R;
+import com.dexlabs.foodback.R;
 
 import GeneralCode.AdvanceFragment;
 import GeneralCode.AsyncFunctions;
@@ -51,7 +51,7 @@ public class ReviewList extends AdvanceFragment implements OnGetWorkListener {
 
     @Override
     protected void afterViewsInitialized() {
-        mAdapter = new ReviewAdapter(getActivity());
+        mAdapter = new ReviewAdapter(getActivity(), this);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         AsyncFunctions async = new AsyncFunctions(getActivity());

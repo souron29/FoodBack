@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.dexlabs.extraloyaljuice.R;
+import com.dexlabs.foodback.R;
 
 import GeneralCode.AdvanceFragment;
 import GeneralCode.AdvanceFunctions;
@@ -66,7 +66,7 @@ public class customerList extends AdvanceFragment implements OnGetWorkListener {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         AsyncFunctions async = new AsyncFunctions(getActivity());
         async.loadCustomers(this);
-        f = new AdvanceFunctions(getActivity());
+
     }
 
     void show() {

@@ -12,7 +12,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.dexlabs.extraloyaljuice.R;
+import com.dexlabs.foodback.R;
 
 import java.util.Calendar;
 

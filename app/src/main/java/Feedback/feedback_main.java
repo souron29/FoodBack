@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.dexlabs.extraloyaljuice.R;
+import com.dexlabs.foodback.R;
 
 import GeneralCode.AdvanceFragment;
 import database.DBMethods;

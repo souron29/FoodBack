@@ -1,7 +1,7 @@
 package Settings;
 
 
-import com.dexlabs.extraloyaljuice.R;
+import com.dexlabs.foodback.R;
 
 import GeneralCode.AdvanceActivity;
 import GeneralCode.AdvanceSettingsFragment;

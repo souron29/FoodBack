@@ -20,20 +20,23 @@
     <string name="radio_poor">Poor</string>
     <string name="textview_food">Food</string>
     <string name="textview_service">Service</string>
-    <string name="feedback_form_hint_editText">Any Suggestions</string>
+
 
     <string name="menu_clear_all">Clear All</string>
     <!-- Navigation Menu -->
     <string name="nav_item_feedback">Feedback</string>
     <string name="nav_item_customer">Customers</string>
     <string name="nav_item_review">Reviews</string>
+    <!--Feedback Form-->
+    <string name="ff_suggestion_poor">What did we do wrong?</string>
+    <string name="ff_suggestion_okay">Suggestions</string>
     <!-- Settings Strings -->
     <string name="settings_general">General</string>
     <string name="settings_title_name">Outlet Name</string>
     <string name="settings_def_name">Restaurant</string>
     <string name="settings_dialog_name">Name of your Outlet</string>
     <string name="settings_title_email">Outlet Email</string>
-    <string name="settings_dialog_email">Email</string>
+    <string name="settings_dialog_email">Email Address</string>
 
     <string name="settings_lock_category">Lock</string>
     <string name="settings_lock_switch_title">Enable Lock</string>

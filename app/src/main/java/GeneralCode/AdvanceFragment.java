@@ -27,7 +27,7 @@ public abstract class AdvanceFragment extends Fragment implements OnBackPressLis
         if (menu_id != 0) {
             setHasOptionsMenu(true);
         }
-        f = new AdvanceFunctions(getActivity());
+        /*f = new AdvanceFunctions(getActivity());*/
         initializeViews();
         afterViewsInitialized();
         return fragmentView;

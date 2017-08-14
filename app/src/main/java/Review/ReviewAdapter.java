@@ -7,16 +7,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.dexlabs.extraloyaljuice.R;
+import com.dexlabs.foodback.R;
 
 import GeneralCode.AdvanceViewHolder;
+import GeneralCode.OnGetWorkListener;
 
 
 class ReviewAdapter extends RecyclerView.Adapter {
     Context mContext;
+    private OnGetWorkListener mWork;
 
-    ReviewAdapter(Context context) {
+    ReviewAdapter(Context context, OnGetWorkListener work) {
         this.mContext = context;
+        this.mWork = work;
     }
 
     @Override
@@ -45,7 +48,14 @@ class ReviewAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return ReviewDriver.reviewID.size();
+        if (ReviewDriver.reviewID != null && ReviewDriver.reviewID.size() > 0) {
+            mWork.workSomething(OnGetWorkListener.HIDE);
+            return ReviewDriver.reviewID.size();
+        }
+
+        mWork.workSomething(OnGetWorkListener.SHOW);
+        return 0;
+
     }
 
     void reset() {

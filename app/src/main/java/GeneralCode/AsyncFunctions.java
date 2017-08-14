@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Loader;
 import android.os.Bundle;
 
-import com.dexlabs.extraloyaljuice.MainActivity;
+import com.dexlabs.foodback.MainActivity;
 
 import CustomerList.CustomerDriver;
 import Review.ReviewDriver;

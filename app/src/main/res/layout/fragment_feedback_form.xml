@@ -1,5 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -8,10 +10,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <TextView
+            style="@style/AccentedTextMedium"
             android:layout_width="@dimen/feedback_form_textview_width"
             android:layout_height="wrap_content"
             android:text="@string/textview_ambiance" />
@@ -28,10 +31,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <TextView
+            style="@style/AccentedTextMedium"
             android:layout_width="@dimen/feedback_form_textview_width"
             android:layout_height="wrap_content"
             android:text="@string/textview_food" />
@@ -48,10 +52,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <TextView
+            style="@style/AccentedTextMedium"
             android:layout_width="@dimen/feedback_form_textview_width"
             android:layout_height="wrap_content"
             android:text="@string/textview_service" />
@@ -65,14 +70,23 @@
             android:stepSize="1" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/edittext_feedback_form_suggestion"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_feedback_form"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/feedback_form_edittext_height"
-        android:hint="@string/feedback_form_hint_editText" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:hintTextAppearance="@style/AccentedTextMedium">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/et_feedback_form_suggestion"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/feedback_form_edittext_height"
+            android:hint="@string/ff_suggestion_okay" />
+    </android.support.design.widget.TextInputLayout>
+
 
     <Button
-        android:id="@+id/button_feedback_form_save"
+        android:id="@+id/bt_feedback_form_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/save" />

@@ -9,7 +9,7 @@
     <dimen name="feedback_textview_width">120dp</dimen>
     <dimen name="feedback_edittext_width">3000dp</dimen>
 
-    <dimen name="feedback_form_textview_width">120dp</dimen>
+    <dimen name="feedback_form_textview_width">130dp</dimen>
     <dimen name="feedback_form_edittext_height">120dp</dimen>
 
     <dimen name="text_small">18sp</dimen>
